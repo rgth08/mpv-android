@@ -92,7 +92,7 @@ internal object Utils {
 
     fun copyAssets(context: Context) {
         val assetManager = context.assets
-        val files = arrayOf("cacert.pem")
+        val files = arrayOf("cacert.pem", "lucine_sharpen_suave.glsl", "lucine_sharpen_medio.glsl", "lucine_sharpen_fuerte.glsl")
         val configDir = context.filesDir.path
 
         for (name in files) {

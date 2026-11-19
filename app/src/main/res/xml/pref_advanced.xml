@@ -8,6 +8,15 @@
         android:summary="@string/pref_gpu_next_summary"
         android:title="@string/pref_gpu_next_title" />
 
+    <ListPreference
+        android:defaultValue="off"
+        app:iconSpaceReserved="false"
+        android:key="lucine_sharpen"
+        android:summary="@string/pref_lucine_sharpen_summary"
+        android:entries="@array/lucine_sharpen_entries"
+        android:entryValues="@array/lucine_sharpen_values"
+        android:title="@string/pref_lucine_sharpen_title" />
+
     <is.xyz.mpv.preferences.ConfigEditDialogPreference
         app:iconSpaceReserved="false"
         app:filename="mpv.conf"

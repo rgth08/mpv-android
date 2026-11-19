@@ -22,8 +22,18 @@ internal class MPVView(context: Context, attrs: AttributeSet) : BaseMPVView(cont
         // apply phone-optimized defaults
         MPVLib.setOptionString("profile", "fast")
 
+        // Lucine: better scalers than the bilinear that profile=fast uses.
+        // The scaler preferences (applied below) still override these.
+        MPVLib.setOptionString("scale", "spline36")
+        MPVLib.setOptionString("cscale", "spline36")
+
         // vo
-        setVo(if (sharedPreferences.getBoolean("gpu_next", false))
+        // Lucine: libplacebo (gpu-next) needs OpenGL >= 3.0. On GLES 2.0 GPUs (e.g. Mali-450)
+        // it leaves a black screen with audio, so fall back to vo=gpu there.
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
+        val glEsVersion = activityManager.deviceConfigurationInfo.reqGlEsVersion
+        val wantGpuNext = sharedPreferences.getBoolean("gpu_next", false)
+        setVo(if (wantGpuNext && glEsVersion >= 0x30000)
             "gpu-next"
         else
             "gpu")
@@ -83,6 +93,11 @@ internal class MPVView(context: Context, attrs: AttributeSet) : BaseMPVView(cont
 
         if (sharedPreferences.getBoolean("gpudebug", false))
             MPVLib.setOptionString("gpu-debug", "yes")
+
+        // Lucine: optional sharpening shader (Settings > Advanced). Off by default.
+        val lucineSharpen = sharedPreferences.getString("lucine_sharpen", "off")
+        if (lucineSharpen == "suave" || lucineSharpen == "medio" || lucineSharpen == "fuerte")
+            MPVLib.setOptionString("glsl-shaders", "${context.filesDir.path}/lucine_sharpen_$lucineSharpen.glsl")
 
         if (sharedPreferences.getBoolean("video_fastdecode", false)) {
             MPVLib.setOptionString("vd-lavc-fast", "yes")

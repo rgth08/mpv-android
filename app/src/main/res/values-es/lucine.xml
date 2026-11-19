@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_lucine_sharpen_title">Shader de nitidez</string>
+    <string name="pref_lucine_sharpen_summary">Afilado ligero de luminancia aplicado después del escalado. Si la imagen se pone negra o va a tirones, déjalo en Apagado.</string>
+    <string-array name="lucine_sharpen_entries">
+        <item>Apagado</item>
+        <item>Suave</item>
+        <item>Medio</item>
+        <item>Fuerte</item>
+    </string-array>
+</resources>

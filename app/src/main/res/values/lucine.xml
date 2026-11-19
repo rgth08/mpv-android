@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_lucine_sharpen_title">Sharpening shader</string>
+    <string name="pref_lucine_sharpen_summary">Light luma sharpening applied after scaling. If the picture goes black or stutters, set it to Off.</string>
+    <string-array name="lucine_sharpen_entries">
+        <item>Off</item>
+        <item>Soft</item>
+        <item>Medium</item>
+        <item>Strong</item>
+    </string-array>
+    <string-array name="lucine_sharpen_values" translatable="false">
+        <item>off</item>
+        <item>suave</item>
+        <item>medio</item>
+        <item>fuerte</item>
+    </string-array>
+</resources>
